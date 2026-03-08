@@ -1,7 +1,7 @@
 #include "automatas.h"
 #include <set>
 
-class RabinScott {
+class RabinScott final {
 private:
     std::set<int> epsilonClosure(const NFA& nfa, const std::set<int>& states);
     std::set<int> epsilonClosure(const NFA& nfa, int state);
