@@ -4,12 +4,12 @@
 
 struct NFA {
     int num_states;                      
-    int start_state;                     
+    std::set<int> start_states;                     
     std::set<int> accept_states;         
     std::map<std::pair<int, char>, std::set<int>> transitions;
     std::map<int, std::set<int>> epsilon_transitions;
     
-    NFA(int n = 0, int start = 0) : num_states(n), start_state(start) {}
+    NFA(int n = 0, std::set<int> start = {0}) : num_states(n), start_states(start) {}
 };
 
 struct DFA {
@@ -23,7 +23,9 @@ struct DFA {
 
 std::ostream& operator<<(std::ostream &os, const NFA& nfa) {
     os << "States: 1-" << (nfa.num_states) << std::endl;
-    os << "Start state: " << nfa.start_state << std::endl;
+    os << "Start state: {"; 
+    for (int s : nfa.start_states) os << s << " ";
+    os << "}" << std::endl;
     os << "Accept states: {";
     for (int s : nfa.accept_states) os << s << " ";
     os << "}" << std::endl;

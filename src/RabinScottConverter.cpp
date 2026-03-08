@@ -60,7 +60,7 @@ DFA RabinScott::operator()(const NFA& nfa, const std::set<char>& alphabet) {
     std::map<std::set<int>, int> state_mapping;
     std::queue<std::set<int>> unprocessed;
     
-    std::set<int> start_closure = epsilonClosure(nfa, nfa.start_state);
+    std::set<int> start_closure = epsilonClosure(nfa, nfa.start_states);
     state_mapping[start_closure] = 0;
     dfa.start_state = 0;
     unprocessed.push(start_closure);
