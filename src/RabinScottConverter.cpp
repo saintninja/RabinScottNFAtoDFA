@@ -102,6 +102,6 @@ DFA RabinScott::operator()(const NFA& nfa, const std::set<char>& alphabet) {
         }
     }
     
-    dfa.num_states = dfa_state_counter;
+    dfa.num_states = dfa_state_counter - 1;
     return dfa;
 }
