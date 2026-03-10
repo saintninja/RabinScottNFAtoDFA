@@ -1,3 +1,5 @@
+#ifndef AUTOMATA_H
+#define AUTOMATA_H
 #include <set>
 #include <map>
 #include <iostream>
@@ -21,28 +23,28 @@ struct DFA {
     DFA() : num_states(0), start_state(-1) {}
 };
 
-std::ostream& operator<<(std::ostream &os, const NFA& nfa) {
+inline std::ostream& operator<<(std::ostream &os, const NFA& nfa) {
     os << "States: 1-" << (nfa.num_states) << std::endl;
-    os << "Start state: {"; 
+    os << "Start state: { "; 
     for (int s : nfa.start_states) os << s << " ";
     os << "}" << std::endl;
-    os << "Accept states: {";
+    os << "Accept states: { ";
     for (int s : nfa.accept_states) os << s << " ";
     os << "}" << std::endl;
     
     os << "Transitions:" << std::endl;
     for (const auto& trans : nfa.transitions) {
         os << "  " << trans.first.first << " by " << trans.first.second 
-             << " --> {";
+             << " --> { ";
         for (int s : trans.second) os << s << " ";
         os << "}" << std::endl;
     }
     
     if (!nfa.epsilon_transitions.empty()) {
-        os << "ε-transitions:" << std::endl;
+        os << "eps-transitions:" << std::endl;
         for (const auto& trans : nfa.epsilon_transitions) {
-            os << "  " << trans.first << " --ε--> {";
-            for (int s : trans.second) std::cout << s << " ";
+            os << "  " << trans.first << " --eps--> { ";
+            for (int s : trans.second) os << s << " ";
             os << "}" << std::endl;
         }
     }
@@ -50,10 +52,10 @@ std::ostream& operator<<(std::ostream &os, const NFA& nfa) {
     return os;
 }
 
-std::ostream& operator<<(std::ostream &os, const DFA& dfa) {
+inline std::ostream& operator<<(std::ostream &os, const DFA& dfa) {
     os << "States: 1-" << (dfa.num_states) << std::endl;
     os << "Start state: " << dfa.start_state << std::endl;
-    os << "Accept states: {";
+    os << "Accept states: { ";
     for (int s : dfa.accept_states) os << s << " ";
     os << "}" << std::endl;
     
@@ -66,3 +68,5 @@ std::ostream& operator<<(std::ostream &os, const DFA& dfa) {
     os << std::endl;
     return os;
 }
+
+#endif

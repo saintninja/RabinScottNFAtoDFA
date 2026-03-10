@@ -1,3 +1,5 @@
+#ifndef RABINSCOTT_H
+#define RABINSCOTT_H
 #include "automatas.h"
 #include <set>
 
@@ -11,3 +13,5 @@ private:
 public:
     DFA operator()(const NFA& nfa, const std::set<char>& alphabet);
 };
+
+#endif
