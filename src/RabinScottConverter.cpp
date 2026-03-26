@@ -66,7 +66,7 @@ DFA RabinScott::operator()(const NFA& nfa, const std::set<char>& alphabet) {
     unprocessed.push(start_closure);
     
     if (containsAcceptState(nfa, start_closure)) {
-        dfa.accept_states.insert(0);
+        dfa.accept_states.insert(1);
     }
     
     int dfa_state_counter = 2;
